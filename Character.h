@@ -17,12 +17,14 @@ class Character {
 	double attackStrength;
 
  public:
- 	Character(HeroType, const string &, double, double);
+ 	Character(HeroType, const string &, double, double); // character constructor
  	HeroType getType() const;
  	const string & getName() const;
- 	int getHealth() const;
- 	void damage(double d);
- 	bool isAlive() const;
+ 	int getHealth() const; // returns the whole number of the health value (static_cast to int)
+ 	void damage(double d); // reduces health value by the amount passed in 
+ 	bool isAlive() const; // returns true if getHealth() returns an integer greater than 0, otherwise false
+	
+	// PURE VIRTUAL FUNCTION THAT MUST BE IMPLEMENTED BY DERIVED CLASSES
  	virtual void attack(Character &) = 0;
  };
 
