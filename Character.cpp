@@ -25,6 +25,9 @@ int Character::getHealth() const {
 
 void Character::damage(double d) {
     this->health = this->health - d; // reduces characters health by the given amount in parameter
+
+    // output a message showing how much damage was sustained by the object (implicit param)
+    cout << this->name << " takes " << d << " damage." << endl;
 }
 
 bool Character::isAlive() const {
