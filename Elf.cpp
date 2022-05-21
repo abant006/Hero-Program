@@ -8,11 +8,11 @@
 // (i.e, user makes a Elf object but sets the type to Wizard... doesn't make sense)
 // (so, each Elf object made will pass in the ELF HeroType into the base class constructor for the data member)
 // Each Elf object will have a HeroType of ELF and only ELF (cannot be changed)
-Elf::Elf(const string &pName,
-         double pHealth,
-         double pAttackStrength,
-         const string &pFamily)
-: Character(ELF, pName, pHealth, pAttackStrength), family(pFamily) {}
+Elf::Elf(const string &eName,
+         double eHealth,
+         double eAttackStrength,
+         const string &eFamily)
+: Character(ELF, eName, eHealth, eAttackStrength), family(eFamily) {}
 
 void Elf::attack(Character &opponent) {
 
@@ -21,7 +21,7 @@ void Elf::attack(Character &opponent) {
     // so the parameter opponent has an associated hero type. Let's compare that
     // CANT CONVERT ANY OBJECT TYPE OTHER THAN ELF TO AN ELF
     // (if opponent is an ELF then we can convert the character object, but if opponent is not an ELF than we cannot convert)
-    if (opponent.getType() == ELF) {
+    if (this->type == opponent.getType()) {
         Elf &opp = dynamic_cast<Elf &>(opponent);
 
         // compare the family of the implicit parameter to the opp's (opponent) family
@@ -29,7 +29,15 @@ void Elf::attack(Character &opponent) {
         // (i.e, no GetFamily() function)
         if (this->family == opp.family) {
             cout << "Elf " << this->name << " does not attack Elf " << opp.name << "." << endl;
-            cout << "They share an allegiance with " << this->family << endl;
+            cout << "They are both members of the " << this->family << " family." << endl;
+        
+          // if they are both elves BUT are from different families
+        } else {
+            double dmg = (this->health / MAX_HEALTH) * this->attackStrength;
+            // attack dialogue
+            cout << "Elf " << this->name << " shoots an arrow at " << opp.name << " --- TWANG!!" << endl;
+            // attack the opponent
+            opp.damage(dmg);
         }
      } else {
         double dmg = (this->health / MAX_HEALTH) * this->attackStrength;

@@ -28,7 +28,7 @@ void Warrior::attack(Character &opponent) {
     // so the parameter opponent has an associated hero type. Let's compare that
     // CANT CONVERT ANY OBJECT TYPE OTHER THAN WARRIOR TO A WARRIOR
     // (if opponent is a WARRIOR then we can convert the character object, but if opponent is not a WARRIOR than we cannot convert)
-    if (opponent.getType() == WARRIOR) {
+    if (this->type == opponent.getType() ) {
         Warrior &opp = dynamic_cast<Warrior &>(opponent);
 
         // compare the allegiance of the implicit parameter to the opp's (opponent) allegiance
@@ -37,6 +37,14 @@ void Warrior::attack(Character &opponent) {
         if (this->allegiance == opp.allegiance) {
             cout << "Warrior " << this->name << " does not attack Warrior " << opp.name << "." << endl;
             cout << "They share an allegiance with " << this->allegiance << endl;
+
+          // if they are both warriors BUT from different families  
+        } else {
+            // damage done by Warrior is % of health remaining * warrior's attack strength
+            double dmg = (this->health / MAX_HEALTH) * this->attackStrength;
+            cout << "Warrior " << this->name << " attacks " << opp.name << " --- SLASH!!" << endl;
+            // attack the opponent
+            opp.damage(dmg);
         }
     } else {
         // damage done by Warrior is % of health remaining * warrior's attack strength
