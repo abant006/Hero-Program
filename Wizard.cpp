@@ -22,14 +22,14 @@ void Wizard::attack(Character &opponent) {
         double dmg = (static_cast<double>(this->rank) / opp.rank) * this->attackStrength;
 
         // now attack the other wizard
-        cout << "Wizard " << this->name << " atttacks " << opp.name << " --- POOF!!" << endl;
+        cout << "Wizard " << this->name << " attacks " << opp.name << " --- POOF!!" << endl;
         // opponent wizard was attacked, and now takes damage
         opp.damage(dmg);
     } else {
         // damage done to non-wizards is just the attack strength
 
         // attack the opponent
-        cout << "Wizard " << this->name << " atttacks " << opponent.getName() << " --- POOF!!" << endl;
+        cout << "Wizard " << this->name << " attacks " << opponent.getName() << " --- POOF!!" << endl;
         // opponent was attacked, and now takes damage
         opponent.damage(this->attackStrength);
     }

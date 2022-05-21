@@ -36,7 +36,7 @@ void Warrior::attack(Character &opponent) {
         // (i.e, no GetAllegiance() function)
         if (this->allegiance == opp.allegiance) {
             cout << "Warrior " << this->name << " does not attack Warrior " << opp.name << "." << endl;
-            cout << "They share an allegiance with " << this->allegiance << endl;
+            cout << "They share an allegiance with " << this->allegiance << "." << endl;
 
           // if they are both warriors BUT from different families  
         } else {
